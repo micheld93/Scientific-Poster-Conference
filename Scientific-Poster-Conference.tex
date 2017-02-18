@@ -1,0 +1,326 @@
+% ##################################################
+% # Tagungsposter Vorlage LaTeX                    #
+% #                                                #
+% # Autor: B. Michel Döhring                       #
+% # E-Mail: micheld.93@gmail.com                   #
+% # Version: 1.2                                   #
+% # Datum: Januar 2017                             #
+% #                                                #
+% ##################################################
+
+% #######################################
+% #######################################
+% # Dokumentation der Tikzposter Klasse #
+% #######################################
+% #######################################
+
+%% 	  Tikzposter is highly customizable: please see
+%% 		https://bitbucket.org/surmann/tikzposter/downloads/styleguide.pdf
+%% 	  Available themes: see also
+%% 		https://bitbucket.org/surmann/tikzposter/downloads/themes.pdf
+
+
+% ######################################
+% ######################################
+% # Konfigurieren der Dokumentenklasse #
+% ######################################
+% ######################################
+\documentclass[25pt, a0paper, portrait,margin=0mm, innermargin=15mm,blockverticalspace=15mm]{tikzposter}
+
+% #####################################
+% Weitere Optionen für documentclass: #
+% #####################################
+
+% colspace
+% subcolspace
+% blockverticalspace
+
+
+% #################################
+% TikZ und LaTeX Reference off/on #
+% #################################
+
+\tikzposterlatexaffectionproofoff
+
+
+% ####################
+% # Pakete einbinden #
+% ####################
+
+% Legt die Zeichenkodierung fest, z.B UTF8
+\usepackage[utf8]{inputenc}
+% Verwendung der Zeichentabelle T1, für deutschsprachige Dokumente sinnvoll
+\usepackage[T1]{fontenc}
+\usepackage{blindtext}
+% Silbentrennung nach neuer deutscher und englischer Rechtschreibung
+\usepackage[ngerman,english]{babel}
+% Für PDF-Optionen
+\usepackage[
+pdftitle={Title},
+pdfsubject={Subject},
+pdfauthor={},
+pdfkeywords={}
+pdfcreator={},
+]{hyperref}
+% Für weitere Autoren im Titelbereich
+\usepackage{authblk}
+% Weitere Farben und HTML Farben
+\usepackage{xcolor}
+% Text um Bilder herum ermöglichen
+\usepackage{wrapfig}
+% Paket für Mathematische Strukturen
+\usepackage{amsmath}
+% Weitere Mathe-Pakete:
+\usepackage{amssymb}
+% Todos ermöglichen:
+\usepackage{todonotes}
+% Schriften und Schriften-Style einbinden
+\usepackage[default]{droidserif}
+\usepackage[defaultsans]{droidsans}
+\usepackage{titlecaps}
+% Weitere Schrift avant grande
+%\usepackage{avant}
+\renewcommand*\familydefault{\sfdefault}
+
+% Ermöglicht die Nutzung von \SI[per-mode=fraction]{1,345}{\coulomb\per\mole}
+\usepackage[
+	locale=DE,
+	per-mode=fraction,
+	output-decimal-marker={{.}},
+	separate-uncertainty,
+	range-phrase={{ to }},
+]{siunitx}
+% Paket für Symbole aus Origin
+\usepackage{oplotsymbl}
+% Chemie-Pakete
+\usepackage{chemfig}
+\usepackage{mathtools}
+% chemmacros und chemformula ohne ghsystem
+\usepackage{chemmacros}
+\chemsetup{language=english,
+modules=all,
+%formula = chemformula
+}
+\chemsetup[phases]{pos=sub}
+% Nummerierung der Reaktions-Formeln nach Chapter (R 1.1)
+\usechemmodule{reactions}
+\renewtagform{reaction}[R ]{(}{)}
+
+
+% #############################
+% # Weitere Farben definieren #
+% #############################
+
+\definecolor{myblue}{HTML}{4B405E}
+\definecolor{mynotecolor}{HTML}{FFFF00}
+\definecolor{myviolett}{HTML}{8904B1}
+% blau08088A
+% blue 4B405E
+ 
+
+% #############################
+% # Color Style konfigurieren #
+% #############################
+
+\definecolorstyle{myColorStyle}{
+\colorlet{colorOne}{black}
+\colorlet{colorTwo}{myblue}
+\colorlet{colorThree}{white}
+\colorlet{colorFour}{green}
+\colorlet{colorFive}{myviolett}
+}{
+% ###################
+% Background Farben #
+% ###################
+\colorlet{backgroundcolor}{myblue!100} % Hintergund-Farbe
+\colorlet{framecolor}{myblue!100} % Rahmen-Farbe
+% ##############
+% Title Farben #
+% ##############
+\colorlet{titlefgcolor}{white} % Titel Schrift-Farbe
+\colorlet{titlebgcolor}{myblue} % Hintergund-Farbe
+% ##############
+% Block Farben #
+% ##############
+\colorlet{blocktitlebgcolor}{white} % Titel Hintergund-Farbe
+\colorlet{blocktitlefgcolor}{red} % Block-Titel Farbe
+\colorlet{blockbodybgcolor}{white} % Schreibbereich Hintergrund-Farbe
+\colorlet{blockbodyfgcolor}{black} % Schreibbereich Schrift-Farbe
+% ###################
+% Innerblock Farben #
+% ###################
+\colorlet{innerblocktitlebgcolor}{white} % Innere Blocks Hintergund-Farbe
+\colorlet{innerblocktitlefgcolor}{myviolett} % Innere Blocks Schrift-Farbe
+\colorlet{innerblockbodybgcolor}{white} % Innere Blocks Hintergund-Farbe
+\colorlet{innerblockbodyfgcolor}{black} % Innere Blocks Schrift-Farbe
+% #############
+% Note Farben #
+% #############
+\colorlet{notebgcolor}{mynotecolor} % Note Hintergund-Farbe
+\colorlet{notefgcolor}{black} % Note Schrift-Farbe
+\colorlet{notefrcolor}{mynotecolor} % Note Rahmen-Farbe
+}
+
+
+% ##########################
+% # Color Style einstellen #
+% ##########################
+
+\usecolorstyle{myColorStyle}
+
+
+% ##########################
+% # Title Style einstellen #
+% ##########################
+
+\usetitlestyle{Empty} % (Default, Basic, Envelope, Wave, VerticalShading, Filled, Empty)
+
+% ##########################
+% # Block Style einstellen #
+% ##########################
+
+\useblockstyle{Default} % (Default, *Basic, Minimal, Envelope, Corner, Slide, TornOut)
+\useinnerblockstyle{Default} % (Default,Table)
+
+
+% ###############################
+% # Background Style einstellen #
+% ###############################
+
+\usebackgroundstyle{Default} % (Default, Rays, VerticalGradation, BottomVerticalGradation, Empty)
+
+
+% #########################
+% # Note Style einstellen #
+% #########################
+
+\usenotestyle{Sticky} % (Default, Corner, VerticalShading, Sticky)
+
+
+% ######################
+% ######################
+% # Beginn des Posters #
+% ######################
+% ######################
+
+
+% ##########################
+% # Autor, Titel, Institut #
+% ##########################
+
+
+\titlegraphic{\includegraphics[width=16.5cm]{example-image-a}}
+\title{\Huge\textsc{Title of Poster}}
+
+\author[1]{Author 1}
+\author[1]{}
+\author[1]{}
+\author[1]{}
+\author[2]{}
+\author[1]{}
+\affil[1]{Institute}
+\affil[2]{Institute}
+
+% \institute{ACME Institute}
+
+
+% ###############################
+% # Logo Position konfigurieren #
+% ###############################
+
+
+\makeatletter
+\def\maketitle{\AB@maketitle}
+\renewcommand\TP@maketitle{%
+   \centering
+   \begin{minipage}[b]{1.0\linewidth}
+        \centering
+        \color{titlefgcolor}
+        {\bfseries \Huge \@title \par} %\textsc
+        \vspace*{5em}
+        {\huge \@author \par}
+        \vspace*{1em}
+        {\LARGE \@institute}
+    \end{minipage}%
+      \tikz[remember picture,overlay]\node[scale=0.8,anchor=east,xshift=0.51\linewidth,yshift=3.9cm,inner sep=0pt] {%
+       \@titlegraphic
+    };
+}
+\makeatother
+
+
+% ###########################
+% # Poster/Dokument beginnt #
+% ###########################
+
+\begin{document}
+
+\maketitle
+
+
+% ###############################
+% # Blöcke und Spalten beginnen #
+% ###############################
+
+\block{Introduction}{
+	\blindtext
+
+}
+
+\note[rotate=8, connection, width = 7cm,
+ roundedcorners=15, targetoffsetx=2cm
+]{notes notes notes}
+
+
+\begin{columns}
+ \column{0.6}
+	\block{Another Block}{
+        	\begin{tikzfigure}[Picture]
+           		 \includegraphics[width=0.5\linewidth]{example-image-a}
+        	\end{tikzfigure}
+	\blindtext     
+}
+
+ \column{0.4}
+	\block{Block}{
+	\blindtext 
+}
+\end{columns}
+
+\begin{columns}
+ \column{0.65}
+	\block{Block again}{
+    \blindtext
+    \innerblock[]{Heading}{\blindtext}  
+}
+
+ \column{0.35}
+	\block{Summary}{
+	\blindtext
+}
+\end{columns}
+
+
+
+
+
+% ###################################
+% # Literaturverzeichnis mit BibTeX #
+% ###################################
+
+\block{}{
+\nocite{*}
+\bibliography{literatur}
+\bibliographystyle{unsrtdin}
+}
+
+
+
+
+
+% ############################################################################
+% ############################################################################
+% ############################################################################
+% ############################################################################
+
+\end{document}
