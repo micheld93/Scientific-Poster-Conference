@@ -3,8 +3,8 @@
 % #                                                #
 % # Autor: B. Michel Döhring                       #
 % # E-Mail: micheld.93@gmail.com                   #
-% # Version: 1.2                                   #
-% # Datum: Januar 2017                             #
+% # Version: 1.3                                   #
+% # Datum: August 2019                             #
 % #                                                #
 % ##################################################
 
@@ -25,7 +25,7 @@
 % # Konfigurieren der Dokumentenklasse #
 % ######################################
 % ######################################
-\documentclass[25pt, a0paper, portrait,margin=0mm, innermargin=15mm,blockverticalspace=15mm]{tikzposter}
+\documentclass[20pt, a0paper, portrait, margin=0mm, innermargin=15mm, blockverticalspace=18mm, colspace=18mm, subcolspace=0mm]{tikzposter}
 
 % #####################################
 % Weitere Optionen für documentclass: #
@@ -51,6 +51,7 @@
 \usepackage[utf8]{inputenc}
 % Verwendung der Zeichentabelle T1, für deutschsprachige Dokumente sinnvoll
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{blindtext}
 % Silbentrennung nach neuer deutscher und englischer Rechtschreibung
 \usepackage[ngerman,english]{babel}
@@ -72,8 +73,20 @@ pdfcreator={},
 \usepackage{amsmath}
 % Weitere Mathe-Pakete:
 \usepackage{amssymb}
+% Zusammenfassung mehrerer Zellen in einer Spalte einer Tabelle
+\usepackage{multirow}
+
+% Bilder Alignment
+\usepackage[export]{adjustbox}
+% Länge von linewidth etc.
+\usepackage{layouts}
+
 % Todos ermöglichen:
 \usepackage{todonotes}
+% Serifenlose Mathe-Schriftart CM Bright --> http://www.tug.org/pracjourn/2006-1/hartke/hartke.pdf
+%\usepackage{cmbright}
+% Serifenlose Mathe-Schriftart Arev math --> http://www.tug.org/pracjourn/2006-1/hartke/hartke.pdf
+\usepackage{arev}
 % Schriften und Schriften-Style einbinden
 \usepackage[default]{droidserif}
 \usepackage[defaultsans]{droidsans}
@@ -208,18 +221,26 @@ modules=all,
 % # Autor, Titel, Institut #
 % ##########################
 
+% Logos
+\titlegraphic{\includegraphics[width=10cm]{example-image-a}}
 
-\titlegraphic{\includegraphics[width=16.5cm]{example-image-a}}
-\title{\Huge\textsc{Title of Poster}}
+% Titel
+\title{\parbox{\linewidth}{\centering First experimental results from a new high-power electron gun: \\ Electron-impact ionisation of multiply charged xenon ions}}
 
-\author[1]{Author 1}
-\author[1]{}
-\author[1]{}
-\author[1]{}
-\author[2]{}
-\author[1]{}
-\affil[1]{Institute}
-\affil[2]{Institute}
+% Autoren
+\author[1,2]{Autor1}
+\author[1,2]{Autor2}
+\author[1]{Autor3}
+\author[1]{Autor4}
+\author[3]{Autor5}
+\author[1]{Autor6}
+\author[1]{Autor7}
+\affil[1]{Institut 1}
+\affil[2]{Institut 2}
+\affil[3]{Institut 3}
+
+\renewcommand\Affilfont{\itshape}
+\setlength{\affilsep}{2em}
 
 % \institute{ACME Institute}
 
@@ -228,25 +249,24 @@ modules=all,
 % # Logo Position konfigurieren #
 % ###############################
 
-
 \makeatletter
 \def\maketitle{\AB@maketitle}
 \renewcommand\TP@maketitle{%
    \centering
+   
    \begin{minipage}[b]{1.0\linewidth}
         \centering
         \color{titlefgcolor}
         {\bfseries \Huge \@title \par} %\textsc
-        \vspace*{5em}
-        {\huge \@author \par}
+        \vspace*{4em}
+        {\LARGE \@author \par}
         \vspace*{1em}
         {\LARGE \@institute}
     \end{minipage}%
-      \tikz[remember picture,overlay]\node[scale=0.8,anchor=east,xshift=0.51\linewidth,yshift=3.9cm,inner sep=0pt] {%
+      \tikz[remember picture,overlay]\node[scale=0.8,anchor=east,xshift=0.51\linewidth,yshift=9cm,inner sep=0pt] {%
        \@titlegraphic
     };
 }
-\makeatother
 
 
 % ###########################
@@ -258,9 +278,13 @@ modules=all,
 \maketitle
 
 
+
 % ###############################
 % # Blöcke und Spalten beginnen #
 % ###############################
+
+% Blöcke und Spalten sind hier exemplarisch angegeben. Die Länge richtet sich nach der Textmenge und den Bildern. 
+% Sinnvoll ist es (1) Text und Bilder zu finalisieren, dann (2) die Anordnung und Länge anzupassen. 
 
 \block{Introduction}{
 	\blindtext
